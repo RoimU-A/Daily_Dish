@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "daily-dish-api-collection",
+		"name": "Daily Dish API",
+		"description": "Daily Dish アプリケーションのAPI テストコレクション",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Web API (JWT認証)",
+			"item": [
+				{
+					"name": "1. ユーザー登録",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"testpassword123\",\n  \"password_confirm\": \"testpassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/web/auth/register/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "web", "auth", "register", ""]
+						}
+					}
+				},
+				{
+					"name": "2. ログイン",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set('ACCESS_TOKEN', response.access);",
+									"    pm.environment.set('REFRESH_TOKEN', response.refresh);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"testpassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/web/auth/login/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "web", "auth", "login", ""]
+						}
+					}
+				},
+				{
+					"name": "3. プロフィール取得",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/web/auth/profile/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "web", "auth", "profile", ""]
+						}
+					}
+				},
+				{
+					"name": "4. レシピ作成",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set('RECIPE_ID', response.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"recipe_name\": \"親子丼\",\n  \"ingredient_1\": \"鶏肉\",\n  \"amount_1\": \"300.0\",\n  \"unit_1\": \"g\",\n  \"ingredient_2\": \"玉ねぎ\",\n  \"amount_2\": \"1.0\",\n  \"unit_2\": \"個\",\n  \"ingredient_3\": \"卵\",\n  \"amount_3\": \"3.0\",\n  \"unit_3\": \"個\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/web/recipes/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "web", "recipes", ""]
+						}
+					}
+				},
+				{
+					"name": "5. レシピ一覧取得",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/web/recipes/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "web", "recipes", ""]
+						}
+					}
+				},
+				{
+					"name": "6. レシピ詳細取得",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/web/recipes/{{RECIPE_ID}}/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "web", "recipes", "{{RECIPE_ID}}", ""]
+						}
+					}
+				},
+				{
+					"name": "7. 新規レシピ登録",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set('REGISTERED_RECIPE_ID', response.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"recipe_name\": \"親子丼\",\n  \"recipe_type\": \"new\",\n  \"recipe\": {{RECIPE_ID}}\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/web/registered-recipes/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "web", "registered-recipes", ""]
+						}
+					}
+				},
+				{
+					"name": "8. 料理履歴作成",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"registered_recipe\": {{REGISTERED_RECIPE_ID}}\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/web/cooked-dishes/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "web", "cooked-dishes", ""]
+						}
+					}
+				},
+				{
+					"name": "9. ダッシュボード取得",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/web/dashboard/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "web", "dashboard", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "外部API (API Key認証)",
+			"item": [
+				{
+					"name": "1. 統計情報取得",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/external/stats/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "external", "stats", ""]
+						}
+					}
+				},
+				{
+					"name": "2. レシピ一覧取得",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/external/recipes/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "external", "recipes", ""]
+						}
+					}
+				},
+				{
+					"name": "3. 最近のアクティビティ",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/external/recent-activities/",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "external", "recent-activities", ""]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8000"
+		}
+	]
+}

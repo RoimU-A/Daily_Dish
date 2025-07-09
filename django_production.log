@@ -1,0 +1,14 @@
+/home/roimu/.pyenv/versions/3.13.3/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+/home/roimu/.pyenv/versions/3.13.3/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+[09/Jul/2025 19:59:32] "GET / HTTP/1.1" 404 179
+[09/Jul/2025 19:59:32] "GET /favicon.ico HTTP/1.1" 404 179
+[09/Jul/2025 19:59:43] "GET / HTTP/1.1" 404 179
+[09/Jul/2025 20:03:41] "POST /api/web/auth/login/ HTTP/1.1" 200 483
+[09/Jul/2025 20:03:41] "POST /api/web/recipes/ HTTP/1.1" 201 1587
+[09/Jul/2025 20:03:41] "POST /api/web/recipes/ HTTP/1.1" 201 1588
+[09/Jul/2025 20:03:41] "GET /api/web/recipes/ HTTP/1.1" 200 7595
+[09/Jul/2025 20:03:41] "POST /api/web/cooked-dishes/ HTTP/1.1" 201 1692
+[09/Jul/2025 20:07:39] "POST /api/web/auth/login/ HTTP/1.1" 200 483
+[09/Jul/2025 20:07:40] "GET /api/web/recipes/ HTTP/1.1" 200 7595

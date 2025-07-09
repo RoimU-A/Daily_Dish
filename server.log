@@ -1,0 +1,28 @@
+/home/roimu/.pyenv/versions/3.13.3/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+/home/roimu/.pyenv/versions/3.13.3/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+Watching for file changes with StatReloader
+[09/Jul/2025 15:46:34] "POST /api/web/auth/register/ HTTP/1.1" 201 55
+[09/Jul/2025 15:46:35] "POST /api/web/auth/login/ HTTP/1.1" 200 483
+[09/Jul/2025 15:46:35] "GET /api/web/auth/profile/ HTTP/1.1" 200 158
+[09/Jul/2025 15:46:35] "POST /api/web/recipes/ HTTP/1.1" 201 1513
+[09/Jul/2025 15:46:35] "POST /api/web/registered-recipes/ HTTP/1.1" 201 240
+[09/Jul/2025 15:46:35] "POST /api/web/registered-recipes/ HTTP/1.1" 201 1697
+[09/Jul/2025 15:46:35] "POST /api/web/ingredient-cache/ HTTP/1.1" 201 141
+[09/Jul/2025 15:46:35] "POST /api/web/ingredient-cache/ HTTP/1.1" 201 138
+[09/Jul/2025 15:46:35] "POST /api/web/ingredient-cache/ HTTP/1.1" 201 135
+[09/Jul/2025 15:46:35] "POST /api/web/ingredient-cache/ HTTP/1.1" 201 132
+[09/Jul/2025 15:46:35] "POST /api/web/ingredient-cache/ HTTP/1.1" 201 138
+[09/Jul/2025 15:46:35] "GET /api/web/dashboard/ HTTP/1.1" 200 303
+[09/Jul/2025 15:46:35] "GET /api/web/recipes/ HTTP/1.1" 200 1565
+[09/Jul/2025 15:46:35] "GET /api/web/registered-recipes/ HTTP/1.1" 200 1990
+[09/Jul/2025 15:46:35] "GET /api/web/ingredient-cache/ HTTP/1.1" 200 740
+Performing system checks...
+
+System check identified no issues (0 silenced).
+July 09, 2025 - 15:46:20
+Django version 4.2, using settings 'daily_dish_project.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+

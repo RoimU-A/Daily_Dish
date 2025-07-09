@@ -1,0 +1,33 @@
+/home/roimu/.pyenv/versions/3.13.3/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+/home/roimu/.pyenv/versions/3.13.3/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+Watching for file changes with StatReloader
+[09/Jul/2025 16:44:04] "POST /api/web/auth/login/ HTTP/1.1" 200 483
+[09/Jul/2025 16:44:04] "POST /api/web/recipes/ HTTP/1.1" 201 1494
+[09/Jul/2025 16:44:04] "POST /api/web/recipes/ HTTP/1.1" 201 1453
+[09/Jul/2025 16:44:04] "GET /api/web/recipes/ HTTP/1.1" 200 4418
+[09/Jul/2025 16:44:04] "POST /api/web/cooked-dishes/ HTTP/1.1" 201 1599
+[09/Jul/2025 16:44:04] "GET /api/web/cooked-dishes/ HTTP/1.1" 200 3174
+[09/Jul/2025 16:44:04] "GET /api/web/stats/ HTTP/1.1" 200 70
+[09/Jul/2025 16:44:04] "GET /api/external/stats/ HTTP/1.1" 200 86
+/home/roimu/daily-dish/daily_dish_project/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+July 09, 2025 - 16:43:48
+Django version 4.2, using settings 'daily_dish_project.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+/home/roimu/.pyenv/versions/3.13.3/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+July 09, 2025 - 19:48:19
+Django version 4.2, using settings 'daily_dish_project.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+

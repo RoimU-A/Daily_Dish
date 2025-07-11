@@ -23,6 +23,7 @@ web_patterns = [
     # 食材キャッシュ管理
     path('ingredient-cache/', views_web.IngredientCacheListCreateView.as_view(), name='web_ingredient_cache_list'),
     path('ingredient-cache/<int:pk>/', views_web.IngredientCacheDetailView.as_view(), name='web_ingredient_cache_detail'),
+    path('ingredient-cache/bulk-delete/', views_web.ingredient_cache_bulk_delete_view, name='web_ingredient_cache_bulk_delete'),
     
     # 統計・分析
     path('stats/', views_web.user_stats_view, name='web_stats'),

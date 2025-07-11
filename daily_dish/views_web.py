@@ -122,6 +122,63 @@ class IngredientCacheDetailView(generics.RetrieveUpdateDestroyAPIView):
         return IngredientCache.objects.filter(user=self.request.user)
 
 
+@api_view(['DELETE'])
+@authentication_classes([HybridAuthentication])
+@permission_classes([IsJWTAuthenticated])
+def ingredient_cache_bulk_delete_view(request):
+    """
+    食材キャッシュ複数削除API
+    DELETE /api/web/ingredient-cache/bulk-delete/
+    Body: {"ids": [1, 2, 3, 4, 5]}
+    """
+    ids = request.data.get('ids', [])
+    
+    # IDのバリデーション
+    if not ids:
+        return Response(
+            {'error': '削除するIDを指定してください'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    if not isinstance(ids, list):
+        return Response(
+            {'error': 'IDsは配列で指定してください'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # 整数チェック
+    try:
+        ids = [int(id) for id in ids]
+    except (ValueError, TypeError):
+        return Response(
+            {'error': '有効な整数IDを指定してください'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # ユーザーが所有する食材キャッシュのみ削除
+    ingredient_caches = IngredientCache.objects.filter(
+        user=request.user,
+        id__in=ids
+    )
+    
+    if not ingredient_caches.exists():
+        return Response(
+            {'error': '削除対象の食材が見つかりません'},
+            status=status.HTTP_404_NOT_FOUND
+        )
+    
+    # 削除実行
+    deleted_count = ingredient_caches.count()
+    deleted_ids = list(ingredient_caches.values_list('id', flat=True))
+    ingredient_caches.delete()
+    
+    return Response({
+        'message': f'{deleted_count}件の食材を削除しました',
+        'deleted_count': deleted_count,
+        'deleted_ids': deleted_ids
+    }, status=status.HTTP_200_OK)
+
+
 # 統計・分析関連
 @api_view(['GET'])
 @authentication_classes([HybridAuthentication])

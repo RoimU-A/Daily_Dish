@@ -3,11 +3,8 @@ djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.0
 python-decouple==3.6
 gunicorn==21.2.0
-# PostgreSQL用
+setuptools>=68.0.0
 psycopg2-binary==2.9.7
-# SQL Server用（必要時）
-# mssql-django==1.4
-# pyodbc==4.0.39
 whitenoise==6.5.0
 django-cors-headers==4.3.1
 dj-database-url==2.1.0

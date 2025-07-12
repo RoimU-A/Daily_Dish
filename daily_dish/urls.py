@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from . import views_web, views_external
+from . import views_web, views_external, views_line
 
 app_name = 'daily_dish'
 
@@ -48,6 +48,11 @@ external_patterns = [
     # 統計・分析情報
     path('stats/', views_external.external_stats_view, name='external_stats'),
     path('recent-activities/', views_external.external_recent_activities_view, name='external_recent_activities'),
+    
+    # LINE連携機能
+    path('users/link-line/', views_line.link_line_user, name='link_line_user'),
+    path('recipes/from-line/', views_line.register_recipe_from_line, name='register_recipe_from_line'),
+    path('line/webhook/', views_line.line_webhook, name='line_webhook'),
 ]
 
 # メインのURL設定

@@ -5,14 +5,29 @@ from decimal import Decimal
 
 
 class User(AbstractUser):
-    """ユーザーモデル"""
+    """ユーザーモデル（LINE連携対応）"""
     email = models.EmailField(unique=True)
+    line_user_id = models.CharField(
+        max_length=100, 
+        unique=True, 
+        null=True, 
+        blank=True,
+        help_text="LINEユーザーID（連携時に設定）"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
     
     class Meta:
         db_table = 'users'
+        indexes = [
+            models.Index(fields=['line_user_id']),
+        ]
+    
+    @property
+    def is_line_linked(self):
+        """LINE連携状態の確認"""
+        return bool(self.line_user_id)
 
 
 class Recipe(models.Model):
@@ -126,6 +141,20 @@ class Recipe(models.Model):
                     'unit': unit
                 })
         return ingredients
+    
+    def set_ingredients(self, ingredients_data):
+        """材料情報の設定（LINE入力対応）"""
+        # 既存の材料フィールドをクリア
+        for i in range(1, 21):
+            setattr(self, f'ingredient_{i}', None)
+            setattr(self, f'amount_{i}', None)
+            setattr(self, f'unit_{i}', None)
+        
+        # 新しい材料データを設定
+        for i, ingredient in enumerate(ingredients_data[:20], 1):
+            setattr(self, f'ingredient_{i}', ingredient.get('name'))
+            setattr(self, f'amount_{i}', ingredient.get('amount'))
+            setattr(self, f'unit_{i}', ingredient.get('unit'))
     
     def is_existing_recipe(self):
         """既存レシピかどうかを判定"""

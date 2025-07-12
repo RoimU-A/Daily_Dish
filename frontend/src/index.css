@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --color-sage-50: #f6f7f6;
+  --color-sage-100: #e3e6e3;
+  --color-sage-200: #c7cdc7;
+  --color-sage-300: #a3ada3;
+  --color-sage-400: #7a887a;
+  --color-sage-500: #5d6f5d;
+  --color-sage-600: #4a5a4a;
+  --color-sage-700: #3c4a3c;
+  --color-sage-800: #323d32;
+  --color-sage-900: #2b342b;
+  
+  --color-stone-50: #fafaf9;
+  --color-stone-100: #f5f5f4;
+  --color-stone-200: #e7e5e4;
+  --color-stone-300: #d6d3d1;
+  --color-stone-400: #a8a29e;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-stone-800: #292524;
+  --color-stone-900: #1c1917;
+  
+  --color-warm-50: #fdfcfc;
+  --color-warm-100: #faf9f9;
+  --color-warm-200: #f5f3f0;
+  --color-warm-300: #ede8e0;
+  --color-warm-400: #ddd4c7;
+  --color-warm-500: #c8baa8;
+  --color-warm-600: #b5a085;
+  --color-warm-700: #9d8668;
+  --color-warm-800: #7a6650;
+  --color-warm-900: #5c4b3a;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.btn-primary {
+  @apply bg-sage-600 hover:bg-sage-700 text-white font-normal py-3 px-6 border border-sage-600 hover:border-sage-700 transition-all duration-300;
+}
+
+.btn-secondary {
+  @apply bg-transparent hover:bg-sage-50 text-sage-700 font-normal py-3 px-6 border border-sage-300 hover:border-sage-400 transition-all duration-300;
+}

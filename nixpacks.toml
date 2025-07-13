@@ -1,13 +1,14 @@
-providers = ["...", "python", "node"]
+providers = ["python", "node"]
 
 [phases.setup]
-aptPkgs = ["libpq-dev", "gcc"]
+nixPkgs = ["postgresql", "gcc"]
+aptPkgs = ["libpq-dev"]
 
 [phases.install]
-cmds = ["...", "pip install -r requirements.txt"]
+cmd = "pip install -r requirements.txt"
 
 [phases.build]
-cmds = ["...", "cd frontend && npm ci && npm run build && cd .."]
+cmd = "cd frontend && npm ci && npm run build && cd .."
 
 [start]
 cmd = "echo 'Starting collectstatic...' && ls -la frontend/dist/ && python manage.py collectstatic --noinput --verbosity=2 && echo 'Collectstatic completed. Checking static files...' && ls -la staticfiles/ && python manage.py migrate && python create_superuser.py && gunicorn daily_dish_project.wsgi:application --bind 0.0.0.0:$PORT"

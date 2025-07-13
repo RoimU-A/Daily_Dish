@@ -1,8 +1,11 @@
+[variables]
+PG_CONFIG = "/nix/store/*/bin/pg_config"
+
 [phases.setup]
 nixPkgs = ["python3", "nodejs", "postgresql_15"]
 
 [phases.install]
-cmd = "export PG_CONFIG=$(find /nix/store -name pg_config | head -1) && pip install -r requirements.txt"
+cmd = "pip install -r requirements.txt"
 
 [phases.build]
 cmd = "cd frontend && npm ci && npm run build && cd .."

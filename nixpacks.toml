@@ -1,14 +1,21 @@
-[providers]
-python = { version = "3.12" }
-node = { version = "20" }
+providers = ['python', 'node']
+
+[variables]
+NIXPACKS_PYTHON_VERSION = '3.12'
+NIXPACKS_NODE_VERSION = '20'
+NPM_CONFIG_FUND = 'false'
+NPM_CONFIG_UPDATE_NOTIFIER = 'false'
 
 [phases.setup]
 aptPkgs = ["libpq-dev", "gcc"]
 
 [phases.build]
-cmd = """
-cd frontend && npm ci && npm run build && cd ..
-"""
+cmds = [
+    "cd frontend",
+    "npm ci",
+    "npm run build",
+    "cd .."
+]
 
 [start]
 cmd = "python manage.py collectstatic --noinput && python manage.py migrate && python create_superuser.py && gunicorn daily_dish_project.wsgi:application --bind 0.0.0.0:$PORT"

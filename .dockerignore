@@ -1,0 +1,13 @@
+# Exclude frontend dist from COPY to preserve built assets
+frontend/dist
+frontend/node_modules
+
+# Other common excludes
+node_modules
+venv
+__pycache__
+*.pyc
+.git
+.gitignore
+README.md
+*.log

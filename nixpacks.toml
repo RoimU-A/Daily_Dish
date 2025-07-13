@@ -1,4 +1,4 @@
-providers = ["python", "nodejs"]
+providers = ["python", "node"]
 
 [variables]
 PG_CONFIG = "/nix/store/*/bin/pg_config"

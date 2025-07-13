@@ -2,10 +2,18 @@
 nixPkgs = ["python3", "nodejs", "postgresql_15"]
 
 [phases.install]
-cmd = "export PG_CONFIG=$(find /nix/store -name pg_config | head -1) && pip install -r requirements.txt"
+cmds = [
+  "export PG_CONFIG=$(find /nix/store -name pg_config | head -1)",
+  "pip install -r requirements.txt"
+]
 
 [phases.build]
-cmd = "cd frontend && npm ci && npm run build && cd .."
+cmds = [
+  "cd frontend",
+  "npm ci", 
+  "npm run build",
+  "cd .."
+]
 
 [start]
 cmd = "python manage.py collectstatic --noinput && python manage.py migrate && python create_superuser.py && gunicorn daily_dish_project.wsgi:application --bind 0.0.0.0:$PORT"

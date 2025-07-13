@@ -23,8 +23,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('daily_dish.urls')),
-    # React アプリケーションのルート（APIパス以外をすべてReactに転送）
-    re_path(r'^(?!api/)(?!admin/).*$', TemplateView.as_view(template_name='index.html'), name='react_app'),
+    # React アプリケーションのルート（API、admin、staticパス以外をすべてReactに転送）
+    re_path(r'^(?!api/)(?!admin/)(?!static/).*$', TemplateView.as_view(template_name='index.html'), name='react_app'),
 ]
 
 # 静的ファイル配信設定（本番環境ではWhiteNoiseが処理）

@@ -150,17 +150,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# React フロントエンド静的ファイル設定
-STATICFILES_DIRS = []
-
-# React専用の静的ファイル設定
-REACT_STATIC_ROOT = os.path.join(BASE_DIR, 'frontend/dist')
-
-# WhiteNoise設定（最もシンプルな設定）
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# 追加の静的ファイルディレクトリ
+STATICFILES_DIRS = [
+    BASE_DIR / "frontend" / "dist",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

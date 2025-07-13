@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-oc#hn)0)2--4a)vqqp1zexq)urv0lr@9gd_yu&tck_))lot(d#')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # 一時的にデバッグモード有効
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 # Railway本番環境設定
 RAILWAY_ENVIRONMENT = os.environ.get('RAILWAY_ENVIRONMENT_NAME')
@@ -238,7 +238,7 @@ CACHES = {
     }
 }
 
-# ログ設定
+# ログ設定（Django エラーログ追加）
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -270,6 +270,11 @@ LOGGING = {
         'daily_dish.views_line': {
             'handlers': ['file', 'console'],
             'level': 'INFO',
+            'propagate': False,
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',
             'propagate': False,
         },
     },

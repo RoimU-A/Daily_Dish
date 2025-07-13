@@ -1,7 +1,7 @@
-providers = ["python", "node"]
+providers = ["node", "python"]
 
 [phases.setup]
-nixPkgs = ["postgresql", "gcc"]
+nixPkgs = ["python3", "nodejs", "postgresql", "gcc"]
 aptPkgs = ["libpq-dev"]
 
 [phases.install]

@@ -1,20 +1,19 @@
-providers = ['python', 'node']
+providers = ['python']
 
 [variables]
 NIXPACKS_PYTHON_VERSION = '3.12'
-NIXPACKS_NODE_VERSION = '20'
 NPM_CONFIG_FUND = 'false'
 NPM_CONFIG_UPDATE_NOTIFIER = 'false'
 
 [phases.setup]
+nixPkgs = ["nodejs_20", "npm"]
 aptPkgs = ["libpq-dev", "gcc"]
 
 [phases.build]
 cmds = [
-    "cd frontend",
-    "npm ci",
-    "npm run build",
-    "cd .."
+    "ls -la",
+    "ls -la frontend/",
+    "cd frontend && ls -la && npm install && npm run build && cd .."
 ]
 
 [start]

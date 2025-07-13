@@ -1,3 +1,7 @@
+[providers]
+python = "3.11"
+nodejs = "18"
+
 [variables]
 PG_CONFIG = "/nix/store/*/bin/pg_config"
 

@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["python3", "nodejs", "postgresql"]
+nixPkgs = ["python3", "nodejs", "postgresql_15"]
 
 [phases.install]
 cmd = "pip install -r requirements.txt"

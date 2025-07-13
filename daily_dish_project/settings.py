@@ -13,10 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
-try:
-    import dj_database_url
-except ImportError:
-    dj_database_url = None
+import dj_database_url
 from dotenv import load_dotenv
 
 # .envファイルから環境変数を読み込み
@@ -110,22 +107,13 @@ WSGI_APPLICATION = 'daily_dish_project.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # データベース設定（Railway PostgreSQL対応）
-if dj_database_url:
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
-            conn_max_age=600,
-            conn_health_checks=True,
-        )
-    }
-else:
-    # SQLiteフォールバック設定
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+DATABASES = {
+    'default': dj_database_url.config(
+        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
+}
 
 
 # Password validation

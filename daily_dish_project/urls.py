@@ -19,14 +19,20 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
+import os
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('daily_dish.urls')),
+    # React静的ファイル直接配信
+    re_path(r'^static/assets/(?P<path>.*)$', serve, {
+        'document_root': os.path.join(settings.BASE_DIR, 'frontend/dist/assets'),
+    }),
     # React アプリケーションのルート（API、admin、staticパス以外をすべてReactに転送）
     re_path(r'^(?!api/)(?!admin/)(?!static/).*$', TemplateView.as_view(template_name='index.html'), name='react_app'),
 ]
 
-# 静的ファイル配信設定（本番環境ではWhiteNoiseが処理）
+# Django静的ファイル配信設定
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

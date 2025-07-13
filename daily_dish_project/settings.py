@@ -154,9 +154,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
 
 # React フロントエンド静的ファイル設定
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/dist'),
-]
+STATICFILES_DIRS = []
+
+# React専用の静的ファイル設定
+REACT_STATIC_ROOT = os.path.join(BASE_DIR, 'frontend/dist')
 
 # WhiteNoise設定（最もシンプルな設定）
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'

@@ -4,7 +4,7 @@ providers = ["python", "node"]
 PG_CONFIG = "/nix/store/*/bin/pg_config"
 
 [phases.setup]
-nixPkgs = ["python3", "nodejs"]
+nixPkgs = ["python3"]
 
 [phases.install]
 cmd = "pip install -r requirements.txt"

@@ -12,7 +12,9 @@ aptPkgs = ["libpq-dev", "gcc"]
 [phases.build]
 cmds = [
     "cd frontend && npm install && npm run build && cd ..",
-    "ls -la frontend/dist/"
+    "mkdir -p /app/frontend",
+    "cp -r frontend/dist /app/frontend/",
+    "ls -la /app/frontend/dist/"
 ]
 
 [start]

@@ -1,8 +1,12 @@
-# CRITICAL: Exclude frontend dist from all COPY operations
-frontend/dist/
+# Exclude frontend source (keep only built dist via build phase)
 frontend/node_modules/
+frontend/src/
+frontend/public/
+frontend/*.json
+frontend/*.js
+frontend/*.ts
 
-# Other excludes
+# Other excludes  
 node_modules/
 venv/
 __pycache__/

@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["python3", "nodejs", "postgresql_15"]
+nixPkgs = ["python3", "nodejs", "libpq", "postgresql_15"]
 
 [phases.install]
 cmd = "export PATH=$PATH:/nix/store/*/bin && pip install -r requirements.txt"
